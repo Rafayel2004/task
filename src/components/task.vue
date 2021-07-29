@@ -5,17 +5,35 @@
       <h4 class="ms-1">Items</h4>
     </div>
     <div class="button-settings">
-        <button class="btn-success btn">Refresh Number</button>
-        <button class="btn-primary btn ms-2">Restore</button>
+        <button class="btn-success btn">Refresh Number  <i class="fas fa-sync"></i></button>
+        <button class="btn-primary btn ms-2" @click="restore">Restore <img src="../assets/restore.svg" width="20px" alt=""></button>
     </div>
-    <div class="button-section" v-for="i in 5">
-        <div class="mt-2">
-          <p class="bg-primary d-inline-block text-white text-center fw-bold">0</p>
-          <button class="bg-secondary btn text-white fw-bold"><i class="fas fa-plus-circle"></i></button>
-          <button class="bg-info btn text-white fw-bold"><i class="fas fa-minus-circle"></i></button>
-          <button class="bg-danger btn text-white fw-bold"><i class="fas fa-trash"></i></button>
-
-        </div>
+    <div class="rows">
+      <rowItem v-for="i in 5" :key="i" value="0" :id="i"></rowItem>
     </div>
   </div>
 </template>
+<script>
+import rowItem from "./rowItem"
+export default {
+  data(){
+    return{
+      rows: null
+    }
+  },
+  components: {
+    "rowItem": rowItem,
+  },
+  methods: {
+    restore(){
+     this.rows = document.querySelector('.rows')
+      console.log(this.rows)
+      console.log(this.rows.children)
+      if(this.rows.children.length == 0){
+        console.log("empty")
+      }
+    }
+  },
+
+}
+</script>
